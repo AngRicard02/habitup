@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="card">
+
+        <div class="foto-perfil-container">
+            <img src="img/user.png" class="foto-perfil">
+        </div>
+
+        <h2>Iniciar sesión</h2>
+
+        <p id="mensajeLogin" class="mensaje"></p>
+
+        <form id="formLogin">
+
+            <div class="input-icono">
+                <img src="img/gmail.png" class="icono-input">
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
+            </div>
+
+            <div class="input-icono">
+                <img src="img/password.png" class="icono-input">
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+
+            <button type="submit">
+                <img src="img/checked.png" class="icono-btn">
+                Entrar
+            </button>
+
+        </form>
+
+        <a href="registro.html" class="link">Crear cuenta nueva</a>
+
+    </div>
+
+</main>
+
+<script src="js/login.js"></script>
+<script src="js/sonidos.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear hábito</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="header">
+        <img src="img/user.png" class="icono-header">
+        <div class="titulo-app">HabitUp</div>
+    </div>
+
+    <div class="card">
+
+        <h2>Creación de hábitos</h2>
+
+        <form id="formHabito">
+
+            <p>Tipo de hábito</p>
+
+            <div class="tabs">
+                <button type="button" class="tab manana" onclick="seleccionarHorario('Mañana')">
+                    <img src="img/sunny.png" class="icono-tab">
+                    Mañana
+                </button>
+
+                <button type="button" class="tab tarde" onclick="seleccionarHorario('Tarde')">
+                    <img src="img/day-and-night.png" class="icono-tab">
+                    Tarde
+                </button>
+
+                <button type="button" class="tab noche" onclick="seleccionarHorario('Noche')">
+                    <img src="img/night-mode.png" class="icono-tab">
+                    Noche
+                </button>
+            </div>
+
+            <input type="hidden" id="horario" value="Mañana">
+
+            <input type="text" id="nombre" placeholder="Nombre del hábito" required>
+
+            <select id="estado">
+                <option value="Pendiente">Estado actual: Pendiente</option>
+                <option value="En proceso">Estado actual: En proceso</option>
+                <option value="Completado">Estado actual: Completado</option>
+            </select>
+
+            <input type="text" id="meta" placeholder="Meta del hábito">
+
+            <select id="color">
+                <option value="azul">Color del hábito: Azul</option>
+                <option value="verde">Color del hábito: Verde</option>
+                <option value="morado">Color del hábito: Morado</option>
+                <option value="rojo">Color del hábito: Rojo</option>
+                <option value="naranja">Color del hábito: Naranja</option>
+            </select>
+
+            <button type="submit">
+                <img src="img/checked.png" class="icono-btn">
+                Guardar
+            </button>
+
+            <p id="mensajeHabito" class="mensaje"></p>
+
+        </form>
+
+    </div>
+
+</main>
+
+<div class="modal" id="modalConfirmar">
+    <div class="modal-card">
+        <h3>¿Estás seguro de guardar este hábito?</h3>
+
+        <div class="modal-botones">
+            <button class="btn-rojo" onclick="cerrarModal()">
+                <img src="img/cancel.png" class="icono-btn">
+                Cancelar
+            </button>
+
+            <button class="btn-verde" onclick="guardarHabito()">
+                <img src="img/checked.png" class="icono-btn">
+                Aceptar
+            </button>
+        </div>
+    </div>
+</div>
+
+<nav class="nav">
+    <a href="habitos.html">
+        <img src="img/habits.png" class="icono-nav">
+        Hábitos
+    </a>
+
+    <a href="progreso.html">
+        <img src="img/star.png" class="icono-nav">
+        Progreso
+    </a>
+
+    <a href="frases.html">
+        <img src="img/crown.png" class="icono-nav">
+        Frases
+    </a>
+</nav>
+
+<script src="js/crear_habito.js"></script>
+<script src="js/sonidos.js"></script>
+
+</body>
+</html>

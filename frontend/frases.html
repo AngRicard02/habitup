@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frases</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="header">
+        <img src="img/user.png" class="icono-header">
+
+        <div>
+            <div class="titulo-app">HabitUp</div>
+            <small>Motivación diaria</small>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Frase del día
+        </h2>
+
+        <div class="card">
+            <p id="frasePantalla">
+                La frase motivacional aparecerá una vez al día.
+            </p>
+        </div>
+
+        <button class="btn" onclick="mostrarFraseManual()">
+            <img src="img/crown.png" class="icono-btn">
+            Ver frase
+        </button>
+
+    </div>
+
+</main>
+
+<div class="modal" id="modalFrase">
+
+    <div class="modal-card">
+
+        <h3>
+            Frase del día
+        </h3>
+
+        <p id="fraseModal"></p>
+
+        <button class="btn-verde" onclick="aceptarFrase()">
+            <img src="img/checked.png" class="icono-btn">
+            Aceptar
+        </button>
+
+    </div>
+
+</div>
+
+<nav class="nav">
+
+    <a href="habitos.html">
+        <img src="img/habits.png" class="icono-nav">
+        Hábitos
+    </a>
+
+    <a href="progreso.html">
+        <img src="img/star.png" class="icono-nav">
+        Progreso
+    </a>
+
+    <a href="frases.html">
+        <img src="img/crown.png" class="icono-nav">
+        Frases
+    </a>
+
+</nav>
+
+<script src="js/frases.js"></script>
+<script src="js/sonidos.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="card">
+
+        <div class="foto-perfil-container">
+            <img src="img/user.png" class="foto-perfil" id="previewFoto">
+
+            <label for="fotoInput" class="btn-foto">
+                <img src="img/video.png" class="icono-foto">
+            </label>
+
+            <input type="file" id="fotoInput" hidden>
+        </div>
+
+        <h2>Crear cuenta</h2>
+
+        <p id="mensajeRegistro" class="mensaje"></p>
+
+        <form id="formRegistro">
+
+            <div class="input-icono">
+                <img src="img/user.png" class="icono-input">
+                <input type="text" id="nombre" placeholder="Nombre completo" required>
+            </div>
+
+            <div class="input-icono">
+                <img src="img/gmail.png" class="icono-input">
+                <input type="email" id="correo" placeholder="Correo electrónico" required>
+            </div>
+
+            <div class="input-icono">
+                <img src="img/password.png" class="icono-input">
+                <input type="password" id="password" placeholder="Contraseña" required>
+            </div>
+
+            <div class="input-icono">
+                <img src="img/check-box.png" class="icono-input">
+                <input type="password" id="confirmarPassword" placeholder="Confirmar contraseña" required>
+            </div>
+
+            <button type="submit">
+                <img src="img/checked.png" class="icono-btn">
+                Registrarme
+            </button>
+
+        </form>
+
+        <a href="login.html" class="link">¿Ya tienes cuenta?</a>
+
+    </div>
+
+</main>
+
+<script src="js/registro.js"></script>
+<script src="js/sonidos.js"></script>
+</body>
+</html>

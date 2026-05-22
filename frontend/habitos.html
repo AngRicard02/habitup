@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mis hábitos</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="header">
+
+        <img src="img/user.png" class="icono-header">
+
+        <div>
+            <div class="titulo-app">
+                HabitUp
+            </div>
+
+            <small id="nombreUsuario"></small>
+        </div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>
+            Lista de hábitos
+        </h2>
+
+        <p id="fechaActual"></p>
+
+        <div class="tabs">
+
+            <button class="tab manana" onclick="filtrarHabitos('Mañana')">
+
+                <img src="img/sunny.png" class="icono-tab">
+
+                Mañana
+
+            </button>
+
+            <button class="tab tarde" onclick="filtrarHabitos('Tarde')">
+
+                <img src="img/day-and-night.png" class="icono-tab">
+
+                Tarde
+
+            </button>
+
+            <button class="tab noche" onclick="filtrarHabitos('Noche')">
+
+                <img src="img/night-mode.png" class="icono-tab">
+
+                Noche
+
+            </button>
+
+        </div>
+
+        <div id="listaHabitos"></div>
+
+        <a href="crear_habito.html" class="btn">
+
+            <img src="img/write.png" class="icono-btn">
+
+            Crear hábito
+
+        </a>
+
+    </div>
+
+</main>
+
+<nav class="nav">
+
+    <a href="habitos.html">
+
+        <img src="img/habits.png" class="icono-nav">
+
+        Hábitos
+
+    </a>
+
+    <a href="progreso.html">
+
+        <img src="img/star.png" class="icono-nav">
+
+        Progreso
+
+    </a>
+
+    <a href="frases.html">
+
+        <img src="img/crown.png" class="icono-nav">
+
+        Frases
+
+    </a>
+
+</nav>
+
+<script src="js/habitos.js"></script>
+<script src="js/sonidos.js"></script>
+
+</body>
+</html>

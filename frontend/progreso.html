@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Progreso</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<main class="app">
+
+    <div class="header">
+        <img src="img/user.png" class="icono-header">
+
+        <div>
+            <div class="titulo-app">HabitUp</div>
+            <small>Tu progreso</small>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <h2 class="titulo-progreso">Progreso</h2>
+
+        <p class="texto-centro">
+            Selecciona el tipo de hábito del que quieres ver tu progreso
+        </p>
+
+        <div class="tabs">
+            <button class="tab manana" onclick="filtrarProgreso('Mañana')">
+                <img src="img/sunny.png" class="icono-tab">
+                M
+            </button>
+
+            <button class="tab tarde" onclick="filtrarProgreso('Tarde')">
+                <img src="img/day-and-night.png" class="icono-tab">
+                T
+            </button>
+
+            <button class="tab noche" onclick="filtrarProgreso('Noche')">
+                <img src="img/night-mode.png" class="icono-tab">
+                N
+            </button>
+        </div>
+
+        <h2 id="tituloTipo">Tipo de hábito</h2>
+
+        <div class="tabla-scroll">
+            <table class="tabla-progreso">
+                <thead>
+                    <tr>
+                        <th>Hábito</th>
+                        <th>Días cumplidos</th>
+                        <th>No cumplidos</th>
+                        <th>Porcentaje</th>
+                        <th>Marcar progreso</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tablaHabitos"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+</main>
+
+<div class="modal" id="modalCalendario">
+
+    <div class="modal-card">
+
+        <h3>Tacha los días de tu progreso</h3>
+
+        <p>Sé sincero contigo mismo</p>
+
+        <div class="calendario-grid" id="calendarioGrid"></div>
+
+        <button class="btn-verde" onclick="marcarDia('cumplido')">
+            <img src="img/checked.png" class="icono-btn">
+            Tachar día completo
+        </button>
+
+        <button class="btn-rojo" onclick="marcarDia('fallado')">
+            <img src="img/cancel.png" class="icono-btn">
+            Tachar día incompleto
+        </button>
+
+        <button onclick="eliminarRegistro()">
+            Eliminar registro
+        </button>
+
+        <button class="btn-rojo" onclick="cerrarCalendario()">
+            Cerrar
+        </button>
+
+    </div>
+
+</div>
+
+<nav class="nav">
+    <a href="habitos.html">
+        <img src="img/habits.png" class="icono-nav">
+        Hábitos
+    </a>
+
+    <a href="progreso.html">
+        <img src="img/star.png" class="icono-nav">
+        Progreso
+    </a>
+
+    <a href="frases.html">
+        <img src="img/crown.png" class="icono-nav">
+        Frases
+    </a>
+</nav>
+
+<script src="js/progreso.js"></script>
+<script src="js/sonidos.js"></script>
+
+</body>
+</html>
