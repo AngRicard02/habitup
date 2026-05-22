@@ -1,3 +1,4 @@
+const API_BASE = "https://habitup-8ho1.onrender.com";
 const usuarioId = localStorage.getItem("usuarioId");
 
 let habitosGlobal = [];
@@ -6,10 +7,14 @@ let habitoSeleccionado = null;
 let diaSeleccionado = null;
 
 async function cargarProgreso(){
-    const respuesta = await fetch(`http://localhost:3000/api/habitos/${usuarioId}`);
-    habitosGlobal = await respuesta.json();
-
-    filtrarProgreso("Mañana");
+    try {
+        const respuesta = await fetch(`${API_BASE}/api/habitos/${usuarioId}`);
+        habitosGlobal = await respuesta.json();
+        filtrarProgreso("Mañana");
+    } catch (error) {
+        document.getElementById("tablaHabitos").innerHTML =
+        "<tr><td colspan='5'>No se pudo conectar con el servidor</td></tr>";
+    }
 }
 
 function filtrarProgreso(tipo){
@@ -21,6 +26,11 @@ function filtrarProgreso(tipo){
     tabla.innerHTML = "";
 
     const filtrados = habitosGlobal.filter(habito => habito.horario === tipo);
+
+    if(filtrados.length === 0){
+        tabla.innerHTML = "<tr><td colspan='5'>No hay hábitos en este horario</td></tr>";
+        return;
+    }
 
     filtrados.forEach(habito => {
         const registro = obtenerRegistro(habito._id);
@@ -53,12 +63,7 @@ function filtrarProgreso(tipo){
 
 function obtenerRegistro(idHabito){
     const datos = localStorage.getItem(`progreso_${idHabito}`);
-
-    if(datos){
-        return JSON.parse(datos);
-    }
-
-    return {};
+    return datos ? JSON.parse(datos) : {};
 }
 
 function guardarRegistro(idHabito, registro){
@@ -87,8 +92,8 @@ function abrirCalendario(idHabito){
 }
 
 function seleccionarDia(elemento, dia){
-    document.querySelectorAll(".dia").forEach(d => {
-        d.classList.remove("dia-seleccionado");
+    document.querySelectorAll(".dia").forEach(diaItem => {
+        diaItem.classList.remove("dia-seleccionado");
     });
 
     elemento.classList.add("dia-seleccionado");
@@ -101,7 +106,6 @@ function marcarDia(estado){
     }
 
     const registro = obtenerRegistro(habitoSeleccionado);
-
     registro[diaSeleccionado] = estado;
 
     guardarRegistro(habitoSeleccionado, registro);
@@ -116,7 +120,6 @@ function eliminarRegistro(){
     }
 
     const registro = obtenerRegistro(habitoSeleccionado);
-
     delete registro[diaSeleccionado];
 
     guardarRegistro(habitoSeleccionado, registro);

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/usuarios/login";
+const API_URL = "https://habitup-8ho1.onrender.com/api/usuarios/login";
 
 const formLogin = document.getElementById("formLogin");
 const mensaje = document.getElementById("mensajeLogin");
@@ -18,17 +18,14 @@ formLogin.addEventListener("submit", async function(evento) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                correo,
-                password
-            })
+            body: JSON.stringify({ correo, password })
         });
 
         const datos = await respuesta.json();
 
         if (respuesta.ok) {
             mensaje.classList.add("exito");
-            mensaje.textContent = datos.mensaje;
+            mensaje.textContent = "Inicio de sesión correcto";
 
             localStorage.setItem("usuarioId", datos.usuarioId);
             localStorage.setItem("nombre", datos.nombre);
@@ -36,10 +33,9 @@ formLogin.addEventListener("submit", async function(evento) {
             setTimeout(() => {
                 window.location.href = "habitos.html";
             }, 1000);
-
         } else {
             mensaje.classList.add("error");
-            mensaje.textContent = datos.mensaje;
+            mensaje.textContent = datos.mensaje || "Datos incorrectos";
         }
 
     } catch (error) {

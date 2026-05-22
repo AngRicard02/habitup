@@ -1,4 +1,5 @@
 const usuarioId = localStorage.getItem("usuarioId");
+const API_URL = "https://habitup-8ho1.onrender.com/api/habitos/crear";
 
 let datosHabito = null;
 
@@ -29,7 +30,7 @@ async function guardarHabito() {
     const mensaje = document.getElementById("mensajeHabito");
 
     try {
-        const respuesta = await fetch("http://localhost:3000/api/habitos/crear", {
+        const respuesta = await fetch(API_URL, {
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
@@ -50,7 +51,7 @@ async function guardarHabito() {
             }, 1200);
         }else{
             mensaje.className = "mensaje error";
-            mensaje.textContent = datos.mensaje;
+            mensaje.textContent = datos.mensaje || "No se pudo guardar";
         }
 
     } catch(error) {

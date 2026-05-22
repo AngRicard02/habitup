@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/usuarios/registro";
+const API_URL = "https://habitup-8ho1.onrender.com/api/usuarios/registro";
 
 const formRegistro = document.getElementById("formRegistro");
 const mensaje = document.getElementById("mensajeRegistro");
@@ -43,26 +43,21 @@ formRegistro.addEventListener("submit", async function(evento) {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                nombre,
-                correo,
-                password
-            })
+            body: JSON.stringify({ nombre, correo, password })
         });
 
         const datos = await respuesta.json();
 
         if (respuesta.ok) {
             mensaje.classList.add("exito");
-            mensaje.textContent = datos.mensaje;
+            mensaje.textContent = "Cuenta creada correctamente";
 
             setTimeout(() => {
                 window.location.href = "login.html";
             }, 1200);
-
         } else {
             mensaje.classList.add("error");
-            mensaje.textContent = datos.mensaje;
+            mensaje.textContent = datos.mensaje || "No se pudo registrar";
         }
 
     } catch (error) {

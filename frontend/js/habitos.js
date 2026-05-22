@@ -1,101 +1,88 @@
+const API_BASE = "https://habitup-8ho1.onrender.com";
 const usuarioId = localStorage.getItem("usuarioId");
-
 const nombre = localStorage.getItem("nombre");
 
-document.getElementById("nombreUsuario")
-.textContent = nombre;
+document.getElementById("nombreUsuario").textContent = nombre || "Usuario";
 
-const listaHabitos =
-document.getElementById("listaHabitos");
-
+const listaHabitos = document.getElementById("listaHabitos");
 const fecha = new Date();
 
-document.getElementById("fechaActual")
-.textContent =
+document.getElementById("fechaActual").textContent =
 fecha.toLocaleDateString();
 
 let habitosGlobal = [];
 
 async function obtenerHabitos() {
-
-    const respuesta = await fetch(
-        `http://localhost:3000/api/habitos/${usuarioId}`
-    );
-
-    habitosGlobal = await respuesta.json();
-
-    filtrarHabitos("Mañana");
-
+    try {
+        const respuesta = await fetch(`${API_BASE}/api/habitos/${usuarioId}`);
+        habitosGlobal = await respuesta.json();
+        filtrarHabitos("Mañana");
+    } catch (error) {
+        listaHabitos.innerHTML = "<p>No se pudo conectar con el servidor</p>";
+    }
 }
 
 function filtrarHabitos(tipo){
-
     listaHabitos.innerHTML = "";
 
-    const filtrados =
-    habitosGlobal.filter(
+    const filtrados = habitosGlobal.filter(
         habito => habito.horario === tipo
     );
 
+    if(filtrados.length === 0){
+        listaHabitos.innerHTML = "<p>No hay hábitos en este horario.</p>";
+        return;
+    }
+
     filtrados.forEach(habito => {
-
         listaHabitos.innerHTML += `
-
-        <div class="habito">
-
-            <input 
-                type="checkbox"
-                ${habito.completado ? "checked" : ""}
-            >
-
-            <div class="contenido-habito">
-
-                <strong>
-                    ${habito.nombre}
-                </strong>
-
-                <p>
-                    ${habito.meta || ""}
-                </p>
-
-            </div>
-
-            <button 
-                class="btn-eliminar"
-                onclick="eliminarHabito('${habito._id}')"
-            >
-
-                <img 
-                    src="img/cancel.png"
-                    class="icono-eliminar"
+            <div class="habito">
+                <input 
+                    type="checkbox"
+                    ${habito.completado ? "checked" : ""}
+                    onchange="completarHabito('${habito._id}')"
                 >
 
-            </button>
+                <div class="contenido-habito">
+                    <strong>${habito.nombre}</strong>
+                    <p>${habito.meta || ""}</p>
+                    <small>${habito.estado || "Pendiente"}</small>
+                </div>
 
-        </div>
-
+                <button class="btn-eliminar" onclick="eliminarHabito('${habito._id}')">
+                    <img src="img/cancel.png" class="icono-eliminar">
+                </button>
+            </div>
         `;
-
     });
+}
 
+async function completarHabito(id){
+    try {
+        await fetch(`${API_BASE}/api/habitos/completar/${id}`, {
+            method:"PUT"
+        });
+
+        obtenerHabitos();
+    } catch (error) {
+        alert("No se pudo actualizar el hábito");
+    }
 }
 
 async function eliminarHabito(id){
-
-    const confirmar =
-    confirm("¿Eliminar hábito?");
+    const confirmar = confirm("¿Eliminar hábito?");
 
     if(!confirmar) return;
 
-    await fetch(
-        `http://localhost:3000/api/habitos/eliminar/${id}`,
-        {
+    try {
+        await fetch(`${API_BASE}/api/habitos/eliminar/${id}`, {
             method:"DELETE"
-        }
-    );
+        });
 
-    obtenerHabitos();
-
+        obtenerHabitos();
+    } catch (error) {
+        alert("No se pudo eliminar el hábito");
+    }
 }
 
 obtenerHabitos();
