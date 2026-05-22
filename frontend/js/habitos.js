@@ -7,8 +7,7 @@ document.getElementById("nombreUsuario").textContent = nombre || "Usuario";
 const listaHabitos = document.getElementById("listaHabitos");
 const fecha = new Date();
 
-document.getElementById("fechaActual").textContent =
-fecha.toLocaleDateString();
+document.getElementById("fechaActual").textContent = fecha.toLocaleDateString();
 
 let habitosGlobal = [];
 
@@ -25,9 +24,7 @@ async function obtenerHabitos() {
 function filtrarHabitos(tipo){
     listaHabitos.innerHTML = "";
 
-    const filtrados = habitosGlobal.filter(
-        habito => habito.horario === tipo
-    );
+    const filtrados = habitosGlobal.filter(habito => habito.horario === tipo);
 
     if(filtrados.length === 0){
         listaHabitos.innerHTML = "<p>No hay hábitos en este horario.</p>";
@@ -36,7 +33,7 @@ function filtrarHabitos(tipo){
 
     filtrados.forEach(habito => {
         listaHabitos.innerHTML += `
-            <div class="habito">
+            <div class="habito color-${habito.color || "azul"}">
                 <input 
                     type="checkbox"
                     ${habito.completado ? "checked" : ""}
@@ -65,7 +62,7 @@ async function completarHabito(id){
 
         obtenerHabitos();
     } catch (error) {
-        alert("No se pudo actualizar el hábito");
+        listaHabitos.innerHTML = "<p>No se pudo actualizar el hábito</p>";
     }
 }
 
@@ -81,7 +78,7 @@ async function eliminarHabito(id){
 
         obtenerHabitos();
     } catch (error) {
-        alert("No se pudo eliminar el hábito");
+        listaHabitos.innerHTML = "<p>No se pudo eliminar el hábito</p>";
     }
 }
 

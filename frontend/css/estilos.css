@@ -461,3 +461,40 @@ button:hover,
 .dia-seleccionado{
     outline:3px solid #facc15;
 }
+
+.color-azul{
+    border-left:6px solid #3b82f6;
+}
+
+.color-verde{
+    border-left:6px solid #16a34a;
+}
+
+.color-morado{
+    border-left:6px solid #7c3aed;
+}
+
+.color-rojo{
+    border-left:6px solid #dc2626;
+}
+
+.color-naranja{
+    border-left:6px solid #f97316;
+}
+
+#modalCalendario .modal-card{
+    max-height:85vh;
+    overflow-y:auto;
+}
+
+#calendarioGrid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+}
+
+#calendarioGrid .dia{
+    width:36px;
+    height:36px;
+    font-size:13px;
+}
